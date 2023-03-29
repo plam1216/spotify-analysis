@@ -21,6 +21,7 @@
     "morgan": "^1.10.0",
     "nodemon": "^2.0.22",
     "pg": "^8.10.0",
+    "spotify-web-api-node": "^5.0.2",
     "ts-node": "^10.9.1",
     "typescript": "^5.0.2"
   },

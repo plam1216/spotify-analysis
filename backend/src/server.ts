@@ -7,6 +7,7 @@ import morgan from 'morgan'
 import cors from 'cors'
 
 import tokensController from './controllers/token'
+import playlistsController from './controllers/playlists'
 
 const app = express()
 
@@ -18,7 +19,11 @@ dotenv.config()
 
 const PORT = process.env.PORT || 4000
 
+//////////
+// Routes
+//////////
 app.use('/api', tokensController)
+app.use('/api', playlistsController)
 
 app.get('/', (req: Request, res: Response) => {
     console.log("working")
