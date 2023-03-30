@@ -8,6 +8,7 @@ import cors from 'cors'
 
 import tokensController from './controllers/token'
 import playlistsController from './controllers/playlists'
+import songsController from './controllers/songs'
 
 const app = express()
 
@@ -24,6 +25,7 @@ const PORT = process.env.PORT || 4000
 //////////
 app.use('/api', tokensController)
 app.use('/api', playlistsController)
+app.use('/api/playlists', songsController)
 
 app.get('/', (req: Request, res: Response) => {
     console.log("working")
