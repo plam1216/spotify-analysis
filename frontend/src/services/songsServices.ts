@@ -4,6 +4,7 @@ const getAllSongs = async (id: string) => {
     const response = await fetch(BASE_URL + id + '/songs')
     const data = await response.json()
 
+    // console.log("getAllSongs", data)
     return data
 }
 
@@ -17,8 +18,9 @@ const addSongsToPlaylist = async (token: string, id: string, playlistName: strin
         body: JSON.stringify({ "playlistName": playlistName })
     })
 
-    const data = response.json()
+    const data = await response.json()
 
+    // console.log("added songs", data)
     return data
 }
 
@@ -27,8 +29,9 @@ const deleteSongsFromPlaylist = async (id: string) => {
         method: "DELETE",
     })
 
-    const data = response.json()
+    const data = await response.json()
 
+    // console.log("Deleted Songs: ", data)
     return data
 }
 
