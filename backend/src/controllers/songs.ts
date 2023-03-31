@@ -26,6 +26,8 @@ songsRouter.get('/:id/songs', async (req: Request, res: Response) => {
 
         const { rows } = await db.query(getAllSongsFromPlaylist, [req.params.id])
 
+        // console.log("# Songs in Playlist ", rows.length)
+
         res.status(201).json(rows)
     } catch (error) {
         console.log('Something went wrong!', error);
@@ -53,7 +55,7 @@ songsRouter.post('/:id', async (req: Request, res: Response) => {
         const playlistTracksResponse = await spotifyApi.getPlaylist(playlistDataUri)
         const songsData = playlistTracksResponse.body.tracks.items
 
-        // console.log(songsData.length)
+        // console.log("Spotify Playlist Length: ", songsData.length)
 
         // iterate through tracks
         for (let i = 0; i < songsData.length; i++) {
@@ -75,11 +77,20 @@ songsRouter.post('/:id', async (req: Request, res: Response) => {
                 playlistFKId,
             ]
 
-            // SQL query: insert song data to 'songs' table
+            // SQL query: 
+            // Insert into 'songs' table (columns)
+            // WHERE songs don't exist with a name=$1 AND playlist_id=$1
             const insertSongsIntoSongsTable = `
                 INSERT INTO songs (name, danceability, duration_ms, energy, key, loudness, tempo, spotify_id, playlist_id) 
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)
+                SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9
+                WHERE NOT EXISTS (
+                    SELECT *
+                    FROM songs
+                    WHERE name=$1 AND playlist_id=$9
+                )
             `
+
+            // console.log('Spotify Track #', i)
 
             // Parameterized Query
             await db.query(insertSongsIntoSongsTable, audioFeatures)
