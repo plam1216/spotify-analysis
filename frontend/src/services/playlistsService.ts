@@ -20,17 +20,17 @@ const getPlaylists = async () => {
     const response = await fetch(BASE_URL)
     const data = await response.json()
 
-    console.log("Playlists", data)
+    // console.log("Playlists", data)
     return data
 }
 
-// GET One Playlist's Songs
-const getPlaylistSongs = async (id: string) => {
+// GET One Playlist
+const getOnePlaylist = async (id: string) => {
     const response = await fetch(BASE_URL + id)
     const data = await response.json()
 
-    console.log(`${data.playlistData[0].name}`, data.playlistSongsData)
-    return { playlistName: data.playlistData[0].name, playlistSongs: data.playlistSongsData }
+    // console.log("get one playlist", data)
+    return data
 }
 
 // CREATE a Playlist
@@ -45,11 +45,11 @@ const createPlaylist = async (token: string, playlistName: string) => {
     })
 
     const data = await response.json()
-    console.log("Created ", data)
+    // console.log("Created ", data)
     return data
 }
 
-const deleteSongsFromPlaylist = async (id: string) => {
+const deletePlaylist = async (id: string) => {
     const response = await fetch(BASE_URL + id, {
         method: "DELETE",
     })
@@ -59,4 +59,4 @@ const deleteSongsFromPlaylist = async (id: string) => {
     return data
 }
 
-export { getPlaylistId, getPlaylists, getPlaylistSongs, createPlaylist, deleteSongsFromPlaylist }
+export { getPlaylistId, getPlaylists, getOnePlaylist, createPlaylist, deletePlaylist }
