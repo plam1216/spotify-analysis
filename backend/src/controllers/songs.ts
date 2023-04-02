@@ -56,22 +56,24 @@ songsRouter.post('/:id', async (req: Request, res: Response) => {
         const songsData = playlistTracksResponse.body.tracks.items
 
         // console.log("Spotify Playlist Length: ", songsData.length)
-
+        
         // iterate through tracks
         for (let i = 0; i < songsData.length; i++) {
             // search for each track's audioFeatures
             const audioFeaturesData = await spotifyApi.getAudioFeaturesForTrack(songsData[i].track.id)
-
+            
             // console.log(audioFeaturesData)
-
+            
             // store values needed for table into array for parameterized query
             const audioFeatures = [
                 songsData[i].track.name,
+                songsData[i].track.artists[0].name,
                 audioFeaturesData.body.danceability,
                 audioFeaturesData.body.duration_ms,
                 audioFeaturesData.body.energy,
                 audioFeaturesData.body.key,
                 audioFeaturesData.body.loudness,
+                audioFeaturesData.body.mode,
                 audioFeaturesData.body.tempo,
                 audioFeaturesData.body.id,
                 playlistFKId,
@@ -81,16 +83,16 @@ songsRouter.post('/:id', async (req: Request, res: Response) => {
             // Insert into 'songs' table (columns)
             // WHERE songs don't exist with a name=$1 AND playlist_id=$1
             const insertSongsIntoSongsTable = `
-                INSERT INTO songs (name, danceability, duration_ms, energy, key, loudness, tempo, spotify_id, playlist_id) 
-                SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9
+                INSERT INTO songs (name, artist, danceability, duration_ms, energy, key, loudness, mode, tempo, spotify_id, playlist_id) 
+                SELECT $1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11
                 WHERE NOT EXISTS (
                     SELECT *
                     FROM songs
-                    WHERE name=$1 AND playlist_id=$9
+                    WHERE name=$1 AND playlist_id=$11
                 )
             `
 
-            // console.log('Spotify Track #', i)
+            console.log('Spotify Track #', i)
 
             // Parameterized Query
             await db.query(insertSongsIntoSongsTable, audioFeatures)
