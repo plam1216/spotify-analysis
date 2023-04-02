@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom'
 
-import './App.css';
+import NavBar from './Components/NavBar/NavBar';
 import Home from './pages/Home/Home';
 import PlaylistAnalysis from './pages/PlaylistAnalysis/PlaylistAnalysis';
 import TopPlaylists from './pages/TopPlaylists/TopPlaylists';
@@ -27,6 +27,7 @@ function App() {
 
   return (
     <div className="App">
+      <NavBar/>
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/topplaylists' element={<TopPlaylists token={accessToken} />} />

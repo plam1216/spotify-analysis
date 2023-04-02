@@ -1,0 +1,13 @@
+#navbar {
+    background-color: rgb(18, 18, 18) !important;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+    justify-content: space-between;
+}
+
+.navbar-brand {
+    color: rgb(179, 179, 179) !important;
+}
+
+.navbar-nav-link {
+    color: rgb(179, 179, 179) !important;
+}
