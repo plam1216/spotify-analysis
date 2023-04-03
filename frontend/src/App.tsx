@@ -6,6 +6,8 @@ import Home from './pages/Home/Home';
 import PlaylistAnalysis from './pages/PlaylistAnalysis/PlaylistAnalysis';
 import TopPlaylists from './pages/TopPlaylists/TopPlaylists';
 
+import './App.css'
+
 function App() {
   const [accessToken, setAccessToken] = useState('')
 

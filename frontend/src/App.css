@@ -1,0 +1,14 @@
+/* #1db954	(29,185,84) */
+/* #212121	(33,33,33) */
+/* #121212	(18,18,18) */
+/* #535353	(83,83,83) */
+/* #b3b3b3	(179,179,179) */
+
+@font-face {
+    font-family: gotham-bold;
+    src: url(./font/Gotham-Bold.otf);
+}
+
+body {
+    font-family: gotham-bold !important;
+}

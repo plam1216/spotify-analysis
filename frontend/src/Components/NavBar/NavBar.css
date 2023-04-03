@@ -1,7 +1,13 @@
+@font-face {
+    font-family: gotham-light;
+    src: url(../../font/Gotham-Light.otf);
+}
+
 #navbar {
     background-color: rgb(18, 18, 18) !important;
     padding: 0.5rem 1rem 0.5rem 1rem;
     justify-content: space-between;
+    font-family: gotham-light !important;
 }
 
 .navbar-brand {
