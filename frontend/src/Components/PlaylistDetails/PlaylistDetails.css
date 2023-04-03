@@ -1,0 +1,16 @@
+.playlistdetails {
+    padding: 10px 0 20px 0;
+}
+
+.playlistdetails:hover {
+    background-color: rgba(179, 179, 179, 0.1);
+}
+
+/* .playlistdetails-header {
+    margin-top: 1rem;
+} */
+
+.playlistdetails-coverart {
+    height: 300px;
+    width: 300px;
+}
