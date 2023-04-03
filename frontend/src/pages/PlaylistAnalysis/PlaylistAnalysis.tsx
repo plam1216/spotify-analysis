@@ -12,6 +12,7 @@ import { calculateAvgDurationMS } from '../../hooks/calculateAvgDurationMS'
 import { calculateAvgEnergy } from '../../hooks/calculateAvgEnergy'
 import { calculateAvgLoudness } from '../../hooks/calculateAvgLoudness'
 import { calculateAvgTempo } from '../../hooks/calculateAvgTempo'
+import { convertAvgMSToMinutes } from '../../hooks/convertAvgMSToMinutes'
 import { convertMSToMinutes } from '../../hooks/convertMSToMinutes'
 import { convertSongMode } from '../../hooks/convertSongMode'
 import { convertSongKey } from '../../hooks/convertSongKey'
@@ -78,7 +79,7 @@ const PlaylistAnalysis = ({ token }: PlaylistAnalysisProps) => {
                         <td>{calculateAvgDanceability(songs)}</td>
                         <td>
                             {calculateAvgDurationMS(songs)} ms
-                            ({convertMSToMinutes(parseInt(calculateAvgDurationMS(songs)))} min)
+                            ({convertAvgMSToMinutes(parseInt(calculateAvgDurationMS(songs)))} min)
                         </td>
                         <td>{calculateAvgEnergy(songs)}</td>
                         <td>{calculateAvgTempo(songs)}</td>

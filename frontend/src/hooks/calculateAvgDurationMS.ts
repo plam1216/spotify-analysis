@@ -8,5 +8,6 @@ export const calculateAvgDurationMS = (songs: Song[]): string => {
 
     let averageDuration = (totalDuration / songs.length).toFixed(0)
     
+    console.log("average duration", averageDuration)
     return averageDuration
 }
