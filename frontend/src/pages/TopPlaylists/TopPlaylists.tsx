@@ -1,27 +1,37 @@
 import React, { useEffect, useState } from 'react'
+import { Col, Row, Container } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Playlist from '../../Components/Playlist/Playlist'
+
+import PlaylistDetails from '../../Components/PlaylistDetails/PlaylistDetails'
+
 import * as playlistsService from '../../services/playlistsService'
 import * as songsService from '../../services/songsServices'
 
-import { Playlists, Song } from '../../types'
+import { Playlist, Song } from '../../types'
+
+import './TopPlaylists.css'
 
 interface TopPlaylistsProps {
     token: string
 }
 
 const TopPlaylists = ({ token }: TopPlaylistsProps) => {
-    const [playlists, setPlaylists] = useState<Playlists[]>([])
-    // const [songs, setSongs] = useState<Song[][]>([])
+    const [playlists, setPlaylists] = useState<Playlist[]>([])
 
-    const spotifyTopPlaylists = [
+    const spotifyTopPlaylists: string[] = [
         "New Music Friday",
         "RapCaviar",
         "Are & Be",
+        "RNB RADAR",
+        "Today's Top Hits",
+        "Viral 50 - Global",
+        "Viral 50 - USA",
+        "Top Songs 50 - Global",
+        "Top Songs 50 - USA",
     ]
 
     // loop through top playlists and create rows with data in Postgres
-    const createPlaylistsRows = async () => {
+    const createPlaylistsRows = async (): Promise<void> => {
         if (token) {
             for (let i = 0; i < spotifyTopPlaylists.length; i++) {
                 await playlistsService.createPlaylist(token, spotifyTopPlaylists[i])
@@ -30,44 +40,37 @@ const TopPlaylists = ({ token }: TopPlaylistsProps) => {
     }
 
     // get rows and update 'playlists' state with data
-    const getPlaylistsRows = async () => {
+    const getPlaylistsRows = async (): Promise<void> => {
         const pgPlaylistsData = await playlistsService.getPlaylists()
         setPlaylists(pgPlaylistsData)
     }
 
-    // const deleteSongsRows = async () => {
-    //     if (token) {
-    //         for (let i = 0; i < playlists.length; i++) {
-    //             await songsService.deleteSongsFromPlaylist(playlists[i].id.toString())
-    //         }
-    //     }
-    // }
+    const deleteSongsRows = async (): Promise<void> => {
+        if (token) {
+            for (let i = 0; i < playlists.length; i++) {
+                await songsService.deleteSongsFromPlaylist(playlists[i].id.toString())
+            }
+        }
+    }
 
-    // const handleStuff = async () => {
-    //     const songsArr = []
-    //     for (let i = 0; i < playlists.length; i++) {
-    //         const songs = await songsService.getAllSongs(playlists[i].id.toString())
-    //         console.log("loop songs", songs)
-    //         songsArr.push(songs)
-    //     }
-
-    //     setSongs(songsArr)
-    // }
-
-
-    const showAllPlaylists = () => {
+    const showAllPlaylists = (): JSX.Element => {
         const allPlaylists = playlists.map(playlist => {
             return (
-                <Link
+                <Col
                     key={playlist.id}
-                    to={`/topplaylists/${playlist.id}`}
+                    className="topplaylists-col"
                 >
-                    <Playlist
-                        id={playlist.id}
-                        name={playlist.name}
-                        image={playlist.image}
-                    />
-                </Link>
+                    <Link
+                        to={`/topplaylists/${playlist.id}`}
+                        className="topplaylists-link"
+                    >
+                        <PlaylistDetails
+                            id={playlist.id}
+                            name={playlist.name}
+                            image={playlist.image}
+                        />
+                    </Link>
+                </Col>
             )
         })
 
@@ -78,25 +81,33 @@ const TopPlaylists = ({ token }: TopPlaylistsProps) => {
         )
     }
 
-    console.log("playlists", playlists)
-    // console.log('songs', songs)
-
     useEffect(() => {
-        createPlaylistsRows()
-        getPlaylistsRows()
-        // deleteSongsRows()
+        const getPlaylists = async (): Promise<void> => {
+            await createPlaylistsRows()
+            await getPlaylistsRows()
+            await deleteSongsRows()
+        }
+
+        getPlaylists()
     }, [])
 
+    console.log("playlists", playlists)
+
     return (
-        <div>
-            <h1>
-                TopPlaylists
-            </h1>
-            {/* <button onClick={handleStuff}>Click Me</button> */}
-            <>
+        <Container
+            fluid
+            className="topplaylists"
+        >
+            <Row>
+                <h1 id="topplaylists-header">
+                    Top Playlists
+                </h1>
+            </Row>
+
+            <Row>
                 {showAllPlaylists()}
-            </>
-        </div>
+            </Row >
+        </Container>
     )
 }
 

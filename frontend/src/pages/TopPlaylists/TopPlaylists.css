@@ -1,0 +1,22 @@
+.topplaylists {
+    text-align: center;
+}
+
+#topplaylists-header {
+    margin: 1rem;
+}
+
+.topplaylists-col{
+    padding: 12px;
+    /* border: 1px solid red; */
+}
+
+
+.topplaylists-link {
+    text-decoration: none;
+    color: rgb(29, 185, 84);
+}
+
+.topplaylists-link:hover {
+    color: white;
+}
