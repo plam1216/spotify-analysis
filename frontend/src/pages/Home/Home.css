@@ -1,0 +1,10 @@
+#home-header {
+    text-align: center;
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+
+.home-image-container {
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
