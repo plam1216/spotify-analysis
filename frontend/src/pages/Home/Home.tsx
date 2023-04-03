@@ -1,7 +1,9 @@
 import React from 'react'
 
-import { Container, Row } from 'react-bootstrap'
+import { Container, Col, Row } from 'react-bootstrap'
 
+import nmf from '../../assets/nmf.png'
+import nmf_stats from '../../assets/nmf-stats.png'
 import nmf_riptide from '../../assets/nmf-riptide.png'
 import riptide_analysis from '../../assets/riptide-analysis.png'
 
@@ -13,14 +15,18 @@ const Home = () => {
             fluid
         >
             <Row>
-                <h2 id="home-header">
+                <h1 id="home-header">
                     Discover song trends in popular playlists on Spotify!
-                </h2>
+                </h1>
             </Row>
 
             <Row className="home-image-container">
-                <img src={nmf_riptide} alt="" style={{width: '750px', height: '500px'}}/>
-                <img src={riptide_analysis} alt="" style={{width: '500px', height: '500px'}}/>
+                <Col style={{textAlign: "center"}}>
+                    <img src={nmf} alt="" style={{ width: '600px', height: '400px', marginTop: "2rem" }} />
+                </Col>
+                <Col style={{textAlign: "center"}}>
+                    <img src={nmf_stats} alt="" style={{ width: '600px', height: '400px', marginTop: "2rem", border: '1px solid grey' }} />
+                </Col>
             </Row>
         </Container>
     )
