@@ -1,0 +1,93 @@
+/* ////////////////////
+    Analysis Table 
+//////////////////// */
+
+.playlist-analysis-loading {
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.playlist-analysis-loading-img-container {
+    text-align: center;
+}
+
+.playlist-analysis-header {
+    margin-top: 1.2rem;
+    text-align: center;
+}
+
+.playlist-analysis-subheader {
+    text-align: center;
+    font-size: 0.8rem;
+    color: rgb(179, 179, 179);
+}
+
+.playlist-analysis-table {
+    text-align: center;
+    color: white !important;
+}
+
+.playlist-analysis-table-header {
+    color: rgb(29, 185, 84) !important;
+}
+
+.playlist-analysis-table-header-tr th {
+    padding: 0.75rem !important;
+}
+
+.playlist-analysis-table-tbody {
+    font-weight: 600;
+}
+
+/* ////////////////
+    Tracklist 
+//////////////// */
+
+/* Table */
+.playlist-analysis-tracklist-table {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+/* Header Row */
+.playlist-analysis-tracklist-table-header-tr {
+    color: rgb(29, 185, 84) !important;
+}
+
+/* Header Row Cells */
+.playlist-analysis-tracklist-table-header-tr th {
+    padding: 0.75rem !important;
+}
+
+/* Table Rows */
+.playlist-analysis-tracklist-table-tr {
+    color: white !important;
+}
+
+/* Table Rows Hover */
+.playlist-analysis-tracklist-table-tr:hover {
+    background-color: rgba(179, 179, 179, 0.3);
+}
+
+/* Song Name cell */
+.playlist-analysis-tracklist-table-td-songname {
+    width: 30rem;
+}
+
+/* Artist cell */
+.playlist-analysis-tracklist-table-td-artist {
+    width: 20rem;
+}
+
+/* Duration cell */
+.playlist-analysis-tracklist-table-td-duration {
+    width: 20rem;
+}
+
+/* Scale cell */
+.playlist-analysis-tracklist-table-td-scale {
+    width: 8rem;
+}
