@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:4000/api/playlists/'
+const BASE_URL = 'https://spotify-analysis-backend.onrender.com/api/playlists/'
 
 const getAllSongs = async (id: string) => {
     const response = await fetch(BASE_URL + id + '/songs')

@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:4000/api/playlists/'
+const BASE_URL = 'https://spotify-analysis-backend.onrender.com/api/playlists/'
 
 // GET Playlist ID
 const getPlaylistId = async (token: string, playlistName: string) => {

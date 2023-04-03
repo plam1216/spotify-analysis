@@ -12,7 +12,7 @@ function App() {
   const [accessToken, setAccessToken] = useState('')
 
   const getToken = async () => {
-    const response = await fetch('http://localhost:4000/api/token', {
+    const response = await fetch('https://spotify-analysis-backend.onrender.com/api/token', {
       method: "POST",
       headers: {
         "Content-Type": "Application/json",
