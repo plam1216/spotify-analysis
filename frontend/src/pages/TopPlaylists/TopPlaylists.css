@@ -2,8 +2,21 @@
     text-align: center;
 }
 
-#topplaylists-header {
-    margin: 1rem;
+.topplaylists-loading {
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.toppplaylists-loading-img-container {
+    text-align: center;
+}
+
+.topplaylists-analysis-header {
+    margin-top: 1.2rem;
+    text-align: center;
 }
 
 .topplaylists-col{

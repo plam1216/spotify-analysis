@@ -7,7 +7,9 @@ import PlaylistDetails from '../../Components/PlaylistDetails/PlaylistDetails'
 import * as playlistsService from '../../services/playlistsService'
 import * as songsService from '../../services/songsServices'
 
-import { Playlist, Song } from '../../types'
+import { Playlist } from '../../types'
+
+import loading_spinner from '../../assets/loading-spinner.gif'
 
 import './TopPlaylists.css'
 
@@ -81,6 +83,34 @@ const TopPlaylists = ({ token }: TopPlaylistsProps) => {
         )
     }
 
+
+    const loaded = (): JSX.Element => {
+        return (
+            <>
+                <Row>
+                    <h1 className="topplaylists-header">
+                        Top Playlists
+                    </h1>
+                </Row>
+
+                <Row>
+                    {showAllPlaylists()}
+                </Row >
+            </>
+        )
+    }
+
+    const loading = (): JSX.Element => {
+        return (
+            <div className="topplaylists-loading">
+                <h2 className="topplaylists-header"> Gathering Playlist Data </h2>
+                <div className="topplaylists-loading-img-container">
+                    <img src={loading_spinner} alt="loading-spinner" />
+                </div>
+            </div>
+        )
+    }
+
     useEffect(() => {
         const getPlaylists = async (): Promise<void> => {
             await createPlaylistsRows()
@@ -91,22 +121,14 @@ const TopPlaylists = ({ token }: TopPlaylistsProps) => {
         getPlaylists()
     }, [])
 
-    console.log("playlists", playlists)
+    // console.log("playlists", playlists)
 
     return (
         <Container
             fluid
             className="topplaylists"
         >
-            <Row>
-                <h1 id="topplaylists-header">
-                    Top Playlists
-                </h1>
-            </Row>
-
-            <Row>
-                {showAllPlaylists()}
-            </Row >
+            {playlists ? loaded() : loading()}
         </Container>
     )
 }
