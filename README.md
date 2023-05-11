@@ -1,6 +1,6 @@
 # Spotify Analysis
 
-#### A site that analyzes songs from Spotify Playlists to spot music trends.
+#### A site that analyzes songs that have made it onto popular Spotify Playlists to spot music trends.
 
 
 ## <a name="deployment"></a> Deployed Link
